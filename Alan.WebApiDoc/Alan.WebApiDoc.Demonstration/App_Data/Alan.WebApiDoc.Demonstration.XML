@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Alan.WebApiDoc.Demonstration</name>
+    </assembly>
+    <members>
+        <member name="T:Alan.WebApiDoc.Demonstration.API.OrderController">
+            <summary>
+            Order API
+            </summary>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Get">
+            <summary>
+            Get All Orders
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Get(System.Int32)">
+            <summary>
+            Query order by order id
+            </summary>
+            <param name="id">Order id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Delete(System.Int32)">
+            <summary>
+            Delete order by order id
+            </summary>
+            <param name="id">Order id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Alan.WebApiDoc.Demonstration.Controllers.HomeController">
+            <summary>
+            Home controller
+            </summary>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.Controllers.HomeController.Index">
+            <summary>
+            Index action
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
