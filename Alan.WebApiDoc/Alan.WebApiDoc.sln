@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alan.WebApiDoc", "Alan.WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alan.WebApiDoc.UnitTest", "Alan.WebApiDoc.UnitTest\Alan.WebApiDoc.UnitTest.csproj", "{A46F3317-376A-4026-A7B6-CD317708E820}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alan.WebApiDoc.Demonstration", "Alan.WebApiDoc.Demonstration\Alan.WebApiDoc.Demonstration.csproj", "{59709BE1-29C5-4ED0-B665-62FD91FA9F35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A46F3317-376A-4026-A7B6-CD317708E820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46F3317-376A-4026-A7B6-CD317708E820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46F3317-376A-4026-A7B6-CD317708E820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59709BE1-29C5-4ED0-B665-62FD91FA9F35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59709BE1-29C5-4ED0-B665-62FD91FA9F35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59709BE1-29C5-4ED0-B665-62FD91FA9F35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59709BE1-29C5-4ED0-B665-62FD91FA9F35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

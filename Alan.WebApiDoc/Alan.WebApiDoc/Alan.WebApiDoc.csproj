@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\XRawMemberAttribute.cs" />
+    <Compile Include="Library\IApiQueriable.cs" />
     <Compile Include="Library\IRawMemberNode.cs" />
     <Compile Include="Library\RawMemberNode.cs" />
+    <Compile Include="Models\ApiDescriptionEntity.cs" />
     <Compile Include="Models\RawDocument.cs" />
     <Compile Include="Models\RawMember.cs" />
     <Compile Include="Models\RawDocMembers.cs" />

@@ -44,7 +44,6 @@ namespace Alan.WebApiDoc.Models
             var members = rootDoc.Element("members");
             IEnumerable<XElement> nodes = members.Elements("member");
             return nodes.Select(ToRawNode);
-
         }
 
     }
