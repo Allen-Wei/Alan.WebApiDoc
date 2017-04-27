@@ -5,18 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alan.WebApiDoc.Models;
-using Alan.WebApiDoc.Library;
+using Alan.WebApiDoc.Interfaces;
 
 namespace Alan.WebApiDoc.UnitTest
 {
-    public class Member : RawMemberNode<Parameter>
+    public class Member : GeneralMember<Parameter>
     {
-        [XRawMember("name")]
-        public String Name { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public override List<Parameter> Parameters { get; set; }
 
-        [XRawMember("summary")]
-        public String Summary { get; set; }
     }
 }

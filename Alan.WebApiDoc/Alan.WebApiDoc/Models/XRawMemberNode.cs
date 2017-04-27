@@ -31,7 +31,8 @@ namespace Alan.WebApiDoc.Models
                 node.Attributes = ele.Attributes().ToDictionary(att => att.Name.LocalName, att => att.Value);
             if (ele.HasElements)
                 node.ChildNodes = ele.Elements().Select(child => ToRawNode(child));
-            node.Value = ele.Value;
+            else
+                node.Value = ele.Value;
             node.TagName = ele.Name.LocalName;
             return node;
         }
@@ -40,8 +41,7 @@ namespace Alan.WebApiDoc.Models
         {
             String xml = File.ReadAllText(xmlPath);
             var xele = XDocument.Parse(xml);
-            var rootDoc = xele.Element("doc");
-            var members = rootDoc.Element("members");
+            var members = xele.Root.Element("members");
             IEnumerable<XElement> nodes = members.Elements("member");
             return nodes.Select(ToRawNode);
         }

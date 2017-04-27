@@ -1,4 +1,6 @@
 ﻿using Alan.WebApiDoc.Attributes;
+using Alan.WebApiDoc.Interfaces;
+using Alan.WebApiDoc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Alan.WebApiDoc.UnitTest
 {
-    public class Parameter
+    public class Parameter : GeneralMemberParameter
     {
-
-        [XRawMember("name")]
-        public String Name { get; set; }
-
-        [XRawMember("example")]
-        public String Example { get; set; }
+        public String Value { get; private set; }
+        public override void SetValue(string nodeValue)
+        {
+            this.Value = nodeValue;
+        }
     }
 }

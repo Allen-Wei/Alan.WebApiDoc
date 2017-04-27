@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alan.WebApiDoc.Library
+namespace Alan.WebApiDoc.Interfaces
 {
     public interface IApiQueriable
     {
