@@ -1,4 +1,5 @@
 ﻿using System;
+using Alan.WebApiDoc.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Alan.WebApiDoc.Interfaces
 {
     public interface IRawMemberParameterNode
     {
-        void SetValue(String nodeValue);
+        String Value { get; set; }
     }
 }

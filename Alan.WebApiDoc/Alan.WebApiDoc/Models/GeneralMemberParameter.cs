@@ -13,6 +13,6 @@ namespace Alan.WebApiDoc.Models
         [XRawMember("name")]
         public String Name { get; set; }
 
-        public abstract void SetValue(string nodeValue);
+        public abstract String Value { get; set; }
     }
 }

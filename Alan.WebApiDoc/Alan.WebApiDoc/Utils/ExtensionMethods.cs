@@ -1,7 +1,7 @@
 ﻿using Alan.WebApiDoc.Attributes;
-using Alan.WebApiDoc.Interfaces;
 using Alan.WebApiDoc.Models;
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace Alan.WebApiDoc.Utils
         {
             var model = new T();
             var validProperty = from property in typeof(T).GetProperties()
-                                let attribute = property.GetCustomAttributes(typeof(XRawMemberAttribute), true).FirstOrDefault() as XRawMemberAttribute
+                                let attribute = property.GetCustomAttributes<XRawMemberAttribute>(true).FirstOrDefault()
                                 where attribute != null && property.CanWrite
                                 select new { attribute, property };
 
@@ -33,28 +33,26 @@ namespace Alan.WebApiDoc.Utils
                 if (value == null) continue;
 
                 pair.property.SetValue(model, value, null);
+
+                if (node.Value != null && pair.property.Name == nameof(node.Value))
+                    pair.property.SetValue(model, node.Value, null);
             }
+
 
             return model;
         }
 
 
-        public static T Convert<T, TPara>(this XRawMemberNode node)
-            where T : IRawMemberNode<TPara>, new()
-            where TPara : IRawMemberParameterNode, new()
+        public static IEnumerable<T> GetTypeMembers<T>(this IEnumerable<T> members)
+            where T : GeneralRawMember
         {
-            var model = node.Convert<T>();
-
-            var parameters = node.ChildNodes.Where(child => child.TagName == model.GetParameterTagName());
-            if (parameters.Any())
-                model.Parameters = parameters.Select(para =>
-                {
-                    var paraModel = para.Convert<TPara>();
-                    paraModel.SetValue(para.Value);
-                    return paraModel;
-                }).ToList();
-
-            return model;
+            return members.Where(m => m.IsType);
+        }
+        public static IEnumerable<TMethod> GetMethodMembers<TType, TMethod>(this TType typeMember, IEnumerable<TMethod> allMembers)
+            where TType: GeneralRawMember
+            where TMethod : GeneralRawMember
+        {
+            return allMembers.Where(m => m.IsMethod && m.FullTypeName == typeMember.FullTypeName);
         }
 
     }

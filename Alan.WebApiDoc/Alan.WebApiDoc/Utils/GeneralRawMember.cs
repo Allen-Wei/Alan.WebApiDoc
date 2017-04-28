@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Alan.WebApiDoc.Interfaces;
+using Alan.WebApiDoc.Models;
 
 namespace Alan.WebApiDoc.Utils
 {
@@ -62,7 +62,7 @@ namespace Alan.WebApiDoc.Utils
                 return this.OriginalName[0] == 'T';
             }
         }
-        public bool IsParamter
+        public bool IsProperty
         {
             get
             {
@@ -79,7 +79,7 @@ namespace Alan.WebApiDoc.Utils
                 var fullName = this.FullName;
                 if (String.IsNullOrWhiteSpace(fullName)) return null;
                 if (this.IsType) return fullName;
-                if (this.IsMethod || this.IsParamter)
+                if (this.IsMethod || this.IsProperty)
                 {
                     var parts = fullName.Split('.');
                     return String.Join(".", parts.Take(parts.Length - 1));
@@ -100,5 +100,6 @@ namespace Alan.WebApiDoc.Utils
                 return paramters.Split(',');
             }
         }
+
     }
 }

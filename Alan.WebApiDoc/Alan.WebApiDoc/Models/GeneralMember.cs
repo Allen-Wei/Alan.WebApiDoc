@@ -11,7 +11,7 @@ using Alan.WebApiDoc.Utils;
 namespace Alan.WebApiDoc.Models
 {
     public abstract class GeneralMember<TParameter> : GeneralRawMember, IRawMemberNode<TParameter>
-        where TParameter : IRawMemberParameterNode, new()
+        where TParameter : GeneralMemberParameter, new()
     {
 
         [XRawMember("returns")]

@@ -20,13 +20,35 @@
             Query order by order id
             </summary>
             <param name="id">Order id</param>
-            <returns></returns>
+            <returns-fail>
+            {
+                success: bool/false,
+                message: string
+            }
+            </returns-fail>
+            <returns>
+            {
+                success: bool,
+                message: string,
+                data: [{
+                    fn: string,
+                    ln: string
+                }]
+            }
+            </returns>
         </member>
         <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Delete(System.Int32)">
             <summary>
             Delete order by order id
             </summary>
             <param name="id">Order id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Post(Alan.WebApiDoc.Demonstration.Models.Order)">
+            <summary>
+            新增订单
+            </summary>
+            <param name="order">订单信息</param>
             <returns></returns>
         </member>
         <member name="T:Alan.WebApiDoc.Demonstration.Controllers.HomeController">
@@ -39,6 +61,26 @@
             Index action
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Alan.WebApiDoc.Demonstration.Models.Order">
+            <summary>
+            订单
+            </summary>
+        </member>
+        <member name="P:Alan.WebApiDoc.Demonstration.Models.Order.OrderId">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="P:Alan.WebApiDoc.Demonstration.Models.Order.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Alan.WebApiDoc.Demonstration.Models.Order.Address">
+            <summary>
+            订单地址
+            </summary>
         </member>
     </members>
 </doc>

@@ -22,7 +22,7 @@ namespace Alan.WebApiDoc.Demonstration.Controllers
         public ActionResult Index()
         {
             var xmlPath = HostingEnvironment.MapPath("~/App_Data/Alan.WebApiDoc.Demonstration.XML");
-            var doc = RawDocument.Parse(xmlPath);
+            //var doc = RawDocument.Parse(xmlPath);
             //var xdoc = XElement.Parse(System.IO.File.ReadAllText(xmlPath));
             var xdoc = XRawMemberNode.Parse(xmlPath);
 

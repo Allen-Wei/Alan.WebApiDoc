@@ -54,8 +54,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Member.cs" />
-    <Compile Include="Parameter.cs" />
+    <Compile Include="PropertyMember.cs" />
+    <Compile Include="TypeMember.cs" />
+    <Compile Include="MethodMember.cs" />
     <Compile Include="XRawNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

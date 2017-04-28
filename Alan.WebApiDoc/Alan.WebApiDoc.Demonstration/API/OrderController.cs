@@ -25,7 +25,22 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// Query order by order id
         /// </summary>
         /// <param name="id">Order id</param>
-        /// <returns></returns>
+        /// <returns-fail>
+        /// {
+        ///     success: bool/false,
+        ///     message: string
+        /// }
+        /// </returns-fail>
+        /// <returns>
+        /// {
+        ///     success: bool,
+        ///     message: string,
+        ///     data: [{
+        ///         fn: string,
+        ///         ln: string
+        ///     }]
+        /// }
+        /// </returns>
         public Order Get(int id)
         {
             return new Order();
@@ -37,6 +52,17 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// <returns></returns>
         public bool Delete(int id)
         {
+            return true;
+        }
+
+        /// <summary>
+        /// 新增订单
+        /// </summary>
+        /// <param name="order">订单信息</param>
+        /// <returns></returns>
+        public bool Post(Order order)
+        {
+
             return true;
         }
     }

@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alan.WebApiDoc.Models;
-using Alan.WebApiDoc.Interfaces;
+using Alan.WebApiDoc.Utils;
 
 namespace Alan.WebApiDoc.UnitTest
 {
-    public class Member : GeneralMember<Parameter>
+    public class TypeMember : GeneralRawMember
     {
-
-        public override List<Parameter> Parameters { get; set; }
-
+        public List<MethodMember> Methods { get; set; }
     }
 }
