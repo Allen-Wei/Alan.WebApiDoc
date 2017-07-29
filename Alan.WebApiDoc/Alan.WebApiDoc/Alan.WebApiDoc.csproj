@@ -40,19 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\XRawMemberAttribute.cs" />
-    <Compile Include="Documentation\MethodMemeber.cs" />
-    <Compile Include="Documentation\ParameterMember.cs" />
-    <Compile Include="Documentation\TypeMember.cs" />
-    <Compile Include="Utils\GeneralRawMember.cs" />
-    <Compile Include="Models\XRawMemberNode.cs" />
+    <Compile Include="Attributes\RawMemberAttribute.cs" />
+    <Compile Include="Interfaces\IApiQueryable.cs" />
+    <Compile Include="Interfaces\IRawMethodMemberNode.cs" />
+    <Compile Include="Interfaces\IRawTypeMemberNode.cs" />
+    <Compile Include="Interfaces\IApiDescriptionEntity.cs" />
+    <Compile Include="Models\GeneralRawMemberNode.cs" />
+    <Compile Include="Interfaces\IGeneralRawMemberNode.cs" />
+    <Compile Include="Models\MethodMember.cs" />
+    <Compile Include="Models\ParameterMember.cs" />
+    <Compile Include="Models\RawMemberNode.cs" />
+    <Compile Include="Models\TypeMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
-    <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

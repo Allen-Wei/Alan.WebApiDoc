@@ -1,5 +1,4 @@
 ﻿using System;
-using Alan.WebApiDoc.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Alan.WebApiDoc.Interfaces
 {
-    public interface IRawMemberParameterNode
+    public interface IApiDescriptionEntity
     {
-        String Value { get; set; }
+        String HttpMethod { get; set; }
+        String Url { get; set; }
+        String FullMethodName { get; set; }
     }
 }

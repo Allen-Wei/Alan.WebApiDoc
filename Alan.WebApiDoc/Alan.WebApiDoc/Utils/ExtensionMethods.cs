@@ -6,54 +6,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using Alan.WebApiDoc.Interfaces;
 
 namespace Alan.WebApiDoc.Utils
 {
     public static class ExtensionMethods
     {
-
-        public static T Convert<T>(this XRawMemberNode node)
-            where T : new()
+        public static String GetFullName(this IGeneralRawMemberNode member)
         {
-            var model = new T();
-            var validProperty = from property in typeof(T).GetProperties()
-                                let attribute = property.GetCustomAttributes<XRawMemberAttribute>(true).FirstOrDefault()
-                                where attribute != null && property.CanWrite
-                                select new { attribute, property };
-
-            foreach (var pair in validProperty)
+            if (String.IsNullOrWhiteSpace(member.GetXmlMemberName())) return null;
+            if (Regex.IsMatch(member.GetXmlMemberName(), @"^\w:"))
             {
-                String key = pair.attribute.Name;
-                String value;
-                if (!node.Attributes.TryGetValue(key, out value))
-                {
-                    var childNode = node.ChildNodes.FirstOrDefault(child => child.TagName == key);
-                    value = childNode?.Value;
-                }
-                if (value == null) continue;
+                var leftBrackedIndex = member.GetXmlMemberName().IndexOf("(");
+                if (leftBrackedIndex < 0) return member.GetXmlMemberName().Substring(2);
+                return member.GetXmlMemberName().Substring(2, leftBrackedIndex - 2);
 
-                pair.property.SetValue(model, value, null);
-
-                if (node.Value != null && pair.property.Name == nameof(node.Value))
-                    pair.property.SetValue(model, node.Value, null);
             }
-
-
-            return model;
+            return null;
         }
 
-
-        public static IEnumerable<T> GetTypeMembers<T>(this IEnumerable<T> members)
-            where T : GeneralRawMember
+        public static bool IsMethod(this IGeneralRawMemberNode member)
         {
-            return members.Where(m => m.IsType);
+            if (String.IsNullOrWhiteSpace(member.GetXmlMemberName())) return false;
+            return member.GetXmlMemberName()[0] == 'M';
         }
-        public static IEnumerable<TMethod> GetMethodMembers<TType, TMethod>(this TType typeMember, IEnumerable<TMethod> allMembers)
-            where TType: GeneralRawMember
-            where TMethod : GeneralRawMember
+        public static bool IsType(this IGeneralRawMemberNode member)
         {
-            return allMembers.Where(m => m.IsMethod && m.FullTypeName == typeMember.FullTypeName);
+            if (String.IsNullOrWhiteSpace(member.GetXmlMemberName())) return false;
+            return member.GetXmlMemberName()[0] == 'T';
+        }
+        public static bool IsProperty(this IGeneralRawMemberNode member)
+        {
+            if (String.IsNullOrWhiteSpace(member.GetXmlMemberName())) return false;
+            return member.GetXmlMemberName()[0] == 'P';
         }
 
+        public static String GetFullTypeName(this IGeneralRawMemberNode member)
+        {
+            var fullName = member.GetFullName();
+            if (String.IsNullOrWhiteSpace(fullName)) return null;
+            if (member.IsType()) return fullName;
+            if (member.IsMethod() || member.IsProperty())
+            {
+                var parts = fullName.Split('.');
+                return String.Join(".", parts.Take(parts.Length - 1));
+            }
+            return null;
+        }
+
+        public static String[] GetParamtersTypes(this IGeneralRawMemberNode member)
+        {
+            if (!member.IsMethod()) return null;
+            var leftBracketIndex = member.GetXmlMemberName().IndexOf("(");
+            if (leftBracketIndex < 0) return new String[0];
+            var paramters = member.GetXmlMemberName().Substring(leftBracketIndex + 1).TrimEnd(')');
+            if (String.IsNullOrWhiteSpace(paramters)) return new String[0];
+            return paramters.Split(',');
+        }
     }
 }

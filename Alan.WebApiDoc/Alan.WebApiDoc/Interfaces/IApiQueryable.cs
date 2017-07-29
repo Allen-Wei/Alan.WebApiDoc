@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Alan.WebApiDoc.Interfaces
 {
-    public interface IApiQueriable
+    public interface IApiQueryable
     {
-        List<ApiDescriptionEntity> GetApis();
+        List<IApiDescriptionEntity> GetApis();
     }
 }

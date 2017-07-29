@@ -1,4 +1,6 @@
 ﻿using Alan.WebApiDoc.Models;
+using System.Web.Http;
+using Alan.WebApiDoc.Demonstration.Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using Alan.WebApiDoc.Demonstration.Models;
 
 namespace Alan.WebApiDoc.Demonstration.Controllers
 {
@@ -22,11 +25,11 @@ namespace Alan.WebApiDoc.Demonstration.Controllers
         public ActionResult Index()
         {
             var xmlPath = HostingEnvironment.MapPath("~/App_Data/Alan.WebApiDoc.Demonstration.XML");
-            //var doc = RawDocument.Parse(xmlPath);
-            //var xdoc = XElement.Parse(System.IO.File.ReadAllText(xmlPath));
-            var xdoc = XRawMemberNode.Parse(xmlPath);
+            WebApiQueriable query = new WebApiQueriable();
+            List<TypeMember<MethodMember<CustomParameterMember>, CustomParameterMember>> typeMembers = 
+                RawMemberNode.Parse<TypeMember<MethodMember<CustomParameterMember>, CustomParameterMember>, MethodMember<CustomParameterMember>, CustomParameterMember>(xmlPath, query);
 
-            return View();
+            return Json(typeMembers, JsonRequestBehavior.AllowGet);
         }
     }
 }

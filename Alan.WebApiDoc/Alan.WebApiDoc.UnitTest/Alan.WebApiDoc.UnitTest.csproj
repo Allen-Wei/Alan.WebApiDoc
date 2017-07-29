@@ -54,19 +54,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PropertyMember.cs" />
-    <Compile Include="TypeMember.cs" />
-    <Compile Include="MethodMember.cs" />
     <Compile Include="XRawNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Alan.WebApiDoc.Demonstration\Alan.WebApiDoc.Demonstration.csproj">
+      <Project>{59709be1-29c5-4ed0-b665-62fd91fa9f35}</Project>
+      <Name>Alan.WebApiDoc.Demonstration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Alan.WebApiDoc\Alan.WebApiDoc.csproj">
       <Project>{095c55d8-354b-47ea-b93b-dbb3485189b5}</Project>
       <Name>Alan.WebApiDoc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

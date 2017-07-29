@@ -16,7 +16,13 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// <summary>
         /// Get All Orders
         /// </summary>
-        /// <returns></returns>
+        /// <returns>{}</returns>
+        /// <returns-fail>
+        /// {
+        ///     success: false,
+        ///     message: "失败原因"
+        /// }
+        /// </returns-fail>
         public List<Order> Get()
         {
             return new List<Order>();
@@ -24,7 +30,7 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// <summary>
         /// Query order by order id
         /// </summary>
-        /// <param name="id">Order id</param>
+        /// <param name="id" is-required="true">Order id</param>
         /// <returns-fail>
         /// {
         ///     success: bool/false,
@@ -49,7 +55,7 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// Delete order by order id
         /// </summary>
         /// <param name="id">Order id</param>
-        /// <returns></returns>
+        /// <returns>{}</returns>
         public bool Delete(int id)
         {
             return true;
@@ -58,11 +64,22 @@ namespace Alan.WebApiDoc.Demonstration.API
         /// <summary>
         /// 新增订单
         /// </summary>
+        /// <author>Alan Wei</author>
         /// <param name="order">订单信息</param>
         /// <returns></returns>
         public bool Post(Order order)
         {
+            return true;
+        }
 
+        /// <summary>
+        /// 更新订单
+        /// </summary>
+        /// <param name="id" is-required="true">订单ID</param>
+        /// <param name="order" is-required="false">订单信息</param>
+        /// <returns>bool</returns>
+        public bool Put(int id, Order order)
+        {
             return true;
         }
     }

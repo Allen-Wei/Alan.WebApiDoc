@@ -13,13 +13,19 @@
             <summary>
             Get All Orders
             </summary>
-            <returns></returns>
+            <returns>{}</returns>
+            <returns-fail>
+            {
+                success: false,
+                message: "失败原因"
+            }
+            </returns-fail>
         </member>
         <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Get(System.Int32)">
             <summary>
             Query order by order id
             </summary>
-            <param name="id">Order id</param>
+            <param name="id" is-required="true">Order id</param>
             <returns-fail>
             {
                 success: bool/false,
@@ -42,14 +48,23 @@
             Delete order by order id
             </summary>
             <param name="id">Order id</param>
-            <returns></returns>
+            <returns>{}</returns>
         </member>
         <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Post(Alan.WebApiDoc.Demonstration.Models.Order)">
             <summary>
             新增订单
             </summary>
+            <author>Alan Wei</author>
             <param name="order">订单信息</param>
             <returns></returns>
+        </member>
+        <member name="M:Alan.WebApiDoc.Demonstration.API.OrderController.Put(System.Int32,Alan.WebApiDoc.Demonstration.Models.Order)">
+            <summary>
+            更新订单
+            </summary>
+            <param name="id" is-required="true">订单ID</param>
+            <param name="order" is-required="false">订单信息</param>
+            <returns>bool</returns>
         </member>
         <member name="T:Alan.WebApiDoc.Demonstration.Controllers.HomeController">
             <summary>

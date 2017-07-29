@@ -4,35 +4,24 @@ using System.Linq;
 using System.Web;
 using Alan.WebApiDoc.Models;
 using System.Web.Http;
+using Alan.WebApiDoc.Interfaces;
+using Alan.WebApiDoc.Demonstration.Models;
 
 namespace Alan.WebApiDoc.Demonstration.Library
 {
-    public class WebApiQueriable //: IApiQueriable
+    public class WebApiQueriable : IApiQueryable
     {
-        public List<object> GetApis()
+        public List<IApiDescriptionEntity> GetApis()
         {
             var q = from api in System.Web.Http.GlobalConfiguration.Configuration.Services.GetApiExplorer().ApiDescriptions
-                    select new
+                    select new MethodMember<ParameterMember>()
                     {
                         HttpMethod = api.HttpMethod.ToString(),
-                        RelativePath = api.RelativePath,
-                        ControllerName = api.ActionDescriptor.ControllerDescriptor.ControllerName,
-                        ControllerType = api.ActionDescriptor.ControllerDescriptor.ControllerType.FullName,
-                        ActionName = api.ActionDescriptor.ActionName,
-                        Parameters = (from para in api.ParameterDescriptions ?? new System.Collections.ObjectModel.Collection<System.Web.Http.Description.ApiParameterDescription>()
-                                      let paraDesc = para.ParameterDescriptor
-                                      let paraType = (paraDesc == null) ? typeof(object) : paraDesc.ParameterType
-                                      select new
-                                      {
-                                          Name = para.Name,
-                                          Source = para.Source.ToString(),
-                                          ParaType = paraType,
-                                          TypeName = paraType.Name,
-                                          TypeFullName = paraType.FullName
-                                      }).ToList()
+                        Url = api.RelativePath,
+                        FullMethodName = $"{api.ActionDescriptor.ControllerDescriptor.ControllerType}.{api.ActionDescriptor.ActionName}"
                     };
-         
-            return null;
+
+            return q.Select(m => m as IApiDescriptionEntity).ToList();
         }
     }
 }
